@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>魔都电音 @Shengdai</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <style>
+    body,
+    html,
+    #container {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        font-family: "微软雅黑";
+    }
+    </style>
+    <script src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=zH3rUOmjfo6uVtG4wvFropNsTKHGNe6F"></script>
+    
+    <script src="data.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+var map = new BMapGL.Map('container');
+map.centerAndZoom(new BMapGL.Point(121.47043,31.237279), 15);
+map.enableScrollWheelZoom(true);
+
+
+
+for (i=1;i<murl.length;i++) {
+	 var label = new BMapGL.Label(); 
+	 label.setStyle({ color: 'blue', borderRadius: '3px', borderColor: '#ccc', padding: '5px', fontSize: '8px', height: '12px', lineHeight: '10px', fontFamily: '宋体' }); 
+	 label.setContent(off[i]); 
+	 //label.setContent('test');
+	 //label.setPosition(new BMapGL.Point(x[i],y[i])); 
+	 var p0 = z[i].split(",")[0]; //  
+     var p1 = z[i].split(",")[1]; //按照原数组的point格式将地图点坐标的经纬度分别提出来
+	
+     //point = new window.BMap.Point(p0, p1); //循环生成新的地图点
+	 label.setPosition(new BMapGL.Point(Number(p0), Number(p1)));  
+	 map.addOverlay(label);
+     label.addEventListener('click',change.bind(null,murl[i]));
+}
+function change(url){
+	 //document.location='http://baidu.com';
+	 //alert(murl[i]);
+	 //window.location.href=url;
+	 window.open(url, '_blank'); 
+			}
+</script>
